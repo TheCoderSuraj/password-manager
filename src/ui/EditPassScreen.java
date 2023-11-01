@@ -48,7 +48,7 @@ public class EditPassScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
-                char[] password = passwordField.getPassword();
+                String password = new String(passwordField.getPassword());
 
                 Map<String, String> credentials = new HashMap<>();
                 credentials.put("username", username);
@@ -56,7 +56,7 @@ public class EditPassScreen extends JFrame {
                 // passwords.put(url, credentials);
                 try {
                     DataController.updatePassword(pass,
-                            new PasswordModel(pass.getWebsite(), username, password.toString()));
+                            new PasswordModel(pass.getWebsite(), username, password));
                     dispose();
                     new GetPassScreen();
                     JOptionPane.showMessageDialog(null, "Password saved successfully.");

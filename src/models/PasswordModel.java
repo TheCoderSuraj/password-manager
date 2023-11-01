@@ -4,9 +4,21 @@ import src.func.encrypt.CipherNotInitException;
 import src.func.encrypt.MyCipher;
 
 public class PasswordModel {
-    public String website;
-    public String password;
-    public String username;
+    String website;
+    String password;
+    String username;
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     public PasswordModel(String website, String username, String password) {
         this.website = website;
@@ -19,6 +31,7 @@ public class PasswordModel {
         website = res[0];
         username = res[1];
         password = MyCipher.decrypt(res[2]);
+        System.out.println("this is password: " + MyCipher.decrypt("FIBm1EilG8RUqcVowD4RcQ=="));
     }
 
     @Override

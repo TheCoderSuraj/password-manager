@@ -21,8 +21,11 @@ import src.func.encrypt.CipherNotInitException;
 import src.models.PasswordModel;
 import src.utils.MyConstants;
 
-public class AddPassScreen extends JFrame {
-    AddPassScreen() {
+public class EditPassScreen extends JFrame {
+    PasswordModel pass;
+
+    EditPassScreen(PasswordModel model) {
+        this.pass = model;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(MyConstants.SCREEN_WIDTH, MyConstants.SCREEN_HEIGHT);
         setLayout(new FlowLayout());
@@ -33,24 +36,29 @@ public class AddPassScreen extends JFrame {
         JTextField usernameField = new JTextField(20);
         JLabel passwordLabel = new JLabel("Password: ");
         JPasswordField passwordField = new JPasswordField(20);
-        JButton saveButton = new JButton("Save");
+        JButton updateButton = new JButton("Update");
         JButton goBackButton = new JButton("Go Back");
-        saveButton.addActionListener(new ActionListener() {
+
+        urlField.setText(pass.getWebsite());
+        usernameField.setText(pass.getUsername());
+        passwordField.setText(pass.getPassword());
+        urlField.setEditable(false);
+
+        updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String website = urlField.getText();
                 String username = usernameField.getText();
-                String password = new String(passwordField.getPassword());
-                System.out.println("password ip: " + password);
+                char[] password = passwordField.getPassword();
 
                 Map<String, String> credentials = new HashMap<>();
                 credentials.put("username", username);
                 credentials.put("password", new String(password));
                 // passwords.put(url, credentials);
                 try {
-                    DataController.addPassword(new PasswordModel(website, username, password));
+                    DataController.updatePassword(pass,
+                            new PasswordModel(pass.getWebsite(), username, password.toString()));
                     dispose();
-                    new HomeScreen();
+                    new GetPassScreen();
                     JOptionPane.showMessageDialog(null, "Password saved successfully.");
 
                 } catch (Exception ex) {
@@ -68,7 +76,7 @@ public class AddPassScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new HomeScreen();
+                new PasswordsScreen(pass.getWebsite());
             }
         });
 
@@ -78,15 +86,11 @@ public class AddPassScreen extends JFrame {
         add(usernameField);
         add(passwordLabel);
         add(passwordField);
-        add(saveButton);
+        add(updateButton);
         add(goBackButton);
 
         setVisible(true);
 
-    }
-
-    public static void main(String[] args) {
-        new AddPassScreen();
     }
 
 }

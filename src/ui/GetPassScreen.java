@@ -1,5 +1,6 @@
 package src.ui;
 
+import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,17 +20,29 @@ public class GetPassScreen extends JFrame {
         // JFrame getPasswordFrame = new JFrame("Get Password");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         // setLayout(new FlowLayout());
+        JButton back = new JButton("<-");
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new HomeScreen();
+            }
+
+        });
+        back.setBounds(10, 5, 80, 25);
+        add(back);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
-        for (String text : DataController.getData().keySet()) {
+        for (String text : DataController.getWebsites()) {
             JButton button = new JButton(text);
             button.setAlignmentX(CENTER_ALIGNMENT); // Center-align the button
 
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "Button clicked: " + text);
+                    dispose();
+                    new PasswordsScreen(text);
                 }
             });
 

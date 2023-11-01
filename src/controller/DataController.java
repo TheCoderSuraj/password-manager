@@ -30,6 +30,7 @@ public class DataController {
 
     public static void init() {
         try {
+
             passwords = FileStorage.retrievePasswords();
             // passwords.sort(new Comparator<PasswordModel>() {
 

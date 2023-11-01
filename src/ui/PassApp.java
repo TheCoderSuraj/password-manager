@@ -31,6 +31,7 @@ public class PassApp extends JFrame {
                 String enteredMasterKey = masterKeyField.getText();
                 if (enteredMasterKey.equals(MasterKeyStore.getMasterKey())) {
                     dispose();
+                    DataController.init();
                     new HomeScreen();
                 } else {
                     JOptionPane.showMessageDialog(frame, "Incorrect Master Key. Please try again.");
@@ -45,9 +46,4 @@ public class PassApp extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        MyCipher.init();
-        DataController.init();
-        new PassApp();
-    }
 }

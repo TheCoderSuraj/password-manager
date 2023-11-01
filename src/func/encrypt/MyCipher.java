@@ -22,6 +22,11 @@ public class MyCipher {
 
     public static void init() {
         try {
+            File file = new File(MyPath.dirPath);
+            if (!file.isDirectory() || !file.exists()) {
+                file.mkdirs();
+            }
+
             if (!new File(MyPath.secretKeyPath).exists()) {
                 secretKey = generateSecretKey();
                 storeSecretKey(secretKey);

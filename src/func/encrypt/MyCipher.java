@@ -100,18 +100,18 @@ public class MyCipher {
         return null;
     }
 
-    public static void main(String[] args) {
-        init();
-        try {
-            String enc = encrypt("Suraj");
+    // public static void main(String[] args) {
+    // init();
+    // try {
+    // String enc = encrypt("Suraj");
 
-            System.out.println("encrypt: " + enc);
-            System.out.println("decrypt: " + decrypt(enc));
-            // System.out.println("decrypt: " + decrypt("FIBm1EilG8RUqcVowD4RcQ=="));
-        } catch (CipherNotInitException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+    // System.out.println("encrypt: " + enc);
+    // System.out.println("decrypt: " + decrypt(enc));
+    // // System.out.println("decrypt: " + decrypt("FIBm1EilG8RUqcVowD4RcQ=="));
+    // } catch (CipherNotInitException e) {
+    // // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // }
+    // }
 
 }

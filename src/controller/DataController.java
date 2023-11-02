@@ -14,7 +14,7 @@ import src.utils.MyPath;
 
 public class DataController {
     static ArrayList<PasswordModel> passwords = new ArrayList<PasswordModel>();
-    static HashMap<String, Object> data = new HashMap<String, Object>();
+    // static HashMap<String, Object> data = new HashMap<String, Object>();
 
     public static ArrayList<PasswordModel> getPasswords() {
         return passwords;
@@ -70,7 +70,7 @@ public class DataController {
 
             for (PasswordModel pass : passwords) {
                 // websites.add(pass.website);
-                data.put(pass.getWebsite(), pass);
+                // data.put(pass.getWebsite(), pass);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class DataController {
     public static void addPassword(PasswordModel pass) throws IOException, CipherNotInitException {
         FileStorage.addPassword(pass);
         passwords.add(pass);
-        data.put(pass.getWebsite(), pass);
+        // data.put(pass.getWebsite(), pass);
         // websites.add(pass.website);
     }
 
